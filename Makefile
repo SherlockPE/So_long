@@ -3,11 +3,38 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: flopez-r <marvin@42.fr>                    +#+  +:+       +#+         #
+#    By: flopez-r <flopez-r@student.42madrid.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2024/01/16 14:58:36 by flopez-r          #+#    #+#              #
-#    Updated: 2024/01/16 14:58:37 by flopez-r         ###   ########.fr        #
+#    Created: 2024/01/16 15:12:06 by flopez-r          #+#    #+#              #
+#    Updated: 2024/01/16 16:55:42 by flopez-r         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
+NAME := so_long
 
+SRC := src/main.c
+OBJ := $(SRC:.c=.o)
+
+CC := gcc
+CFLAGS := -Wall -Wextra -Werror -I includes
+INCLUDE_FLAG = -I includes
+# OBJ = $(patsubst $(SRC), $(SRC:.c=.o))
+
+all: $(NAME)
+
+$(NAME): $(OBJ)
+	$(MAKE) -C libft
+	$(CC) $(CFLAGS) $(OBJ) -Llibft -lft -o $(NAME) 
+
+clean:
+	$(MAKE) clean -C libft
+	rm -f $(OBJ)
+
+fclean: clean
+	$(MAKE) fclean -C libft
+	rm -f $(NAME)
+
+re: fclean all
+
+
+.PHONY: all clean fclean re
