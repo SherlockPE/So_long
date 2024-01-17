@@ -6,7 +6,7 @@
 /*   By: flopez-r <flopez-r@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/18 22:40:55 by fabriciolop       #+#    #+#             */
-/*   Updated: 2023/10/25 18:11:34 by flopez-r         ###   ########.fr       */
+/*   Updated: 2024/01/17 16:03:31 by flopez-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,8 @@ char	*read_archive(char *buffer, int fd)
 	char	*aux;
 
 	data = 1;
-	temp = (char *)ft_calloc(BUFFER_SIZE + 1, 1);
-	while (!ft_strchr(buffer, '\n') && data)
+	temp = (char *)ft_calloc_gnl(BUFFER_SIZE + 1, 1);
+	while (!ft_strchr_gnl(buffer, '\n') && data)
 	{
 		data = read(fd, temp, BUFFER_SIZE);
 		if (data < 0)
@@ -30,7 +30,7 @@ char	*read_archive(char *buffer, int fd)
 			return (free(temp), buffer);
 		temp[data] = 0;
 		aux = buffer;
-		buffer = ft_strjoin(buffer, temp);
+		buffer = ft_strjoin_gnl(buffer, temp);
 		free(aux);
 	}
 	return (free(temp), temp = NULL, buffer);
@@ -47,9 +47,9 @@ char	*create_line(char *str)
 	while (str[i] != '\n' && str[i])
 		i++;
 	if (!str[i])
-		result = (char *)ft_calloc(i + 1, 1);
+		result = (char *)ft_calloc_gnl(i + 1, 1);
 	else
-		result = (char *)ft_calloc(i + 2, 1);
+		result = (char *)ft_calloc_gnl(i + 2, 1);
 	if (!result)
 		return (NULL);
 	while (i >= 0)
@@ -72,11 +72,11 @@ char	*free_and_delete(char *str)
 	i = 0;
 	while (str[i] != '\n' && str[i])
 		i++;
-	size = ft_strlen(str);
+	size = ft_strlen_gnl(str);
 	final_size = size - i;
 	if (!final_size)
 		return (free(str), NULL);
-	result = (char *)ft_calloc(final_size, 1);
+	result = (char *)ft_calloc_gnl(final_size, 1);
 	if (!result)
 		return (free(str), str = NULL, NULL);
 	while (--final_size >= 0)
