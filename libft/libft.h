@@ -6,7 +6,7 @@
 /*   By: flopez-r <flopez-r@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/05 13:07:06 by flopez-r          #+#    #+#             */
-/*   Updated: 2023/12/30 16:25:08 by flopez-r         ###   ########.fr       */
+/*   Updated: 2024/01/17 15:04:17 by flopez-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define LIBFT_H
 
 # include "printf/ft_printf.h"
+# include "gnl/get_next_line.h"
 # include <stddef.h>
 # include <stdlib.h>
 
