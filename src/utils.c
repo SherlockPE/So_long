@@ -1,38 +1,40 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: flopez-r <flopez-r@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/16 16:15:36 by flopez-r          #+#    #+#             */
-/*   Updated: 2024/01/18 15:53:58 by flopez-r         ###   ########.fr       */
+/*   Created: 2024/01/18 15:44:22 by flopez-r          #+#    #+#             */
+/*   Updated: 2024/01/18 15:54:03 by flopez-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <so_long.h>
 
-int	main(int argc, char *argv[])
+void	ft_perror(char *message)
 {
-	int		fd;
+	ft_printf("Error\n%s\n", message);
+	exit(EXIT_FAILURE);
+}
+
+//A funçao lê um arquivo e retorna uma matriz no mapa
+char	**create_map(int fd)
+{
 	char	**matrix;
-	if (argc <= 1)
-		ft_perror("Arguments not valid");
+	int		alto;
+	int		i;
 
-	//Obtener file descriptor
-	fd = open(argv[1], O_RDONLY);
-	if (fd < 0)
-		ft_perror("No se pudo abrir el archivo");
+	//Darle tamaño al mapa
+	alto = 32;
+	matrix = (char **)ft_calloc(alto + 1, sizeof(char *));
 
-	//Get map
-	matrix = create_map(fd);
-
-	//Check if map is ok
-	check_map(matrix);
-
-	//free map
-	/* crear funcion para liberar el mapa */
-
-	ft_printf("O MAPA ESTA BEM");
-	return (0);
+	//Llenar el mapa
+	i = 0;
+	while (i < alto)
+	{
+		matrix[i] = get_next_line(fd);
+		i++;
+	}
+	return (matrix);
 }
