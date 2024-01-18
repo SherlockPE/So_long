@@ -6,7 +6,7 @@
 /*   By: flopez-r <flopez-r@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/16 16:15:36 by flopez-r          #+#    #+#             */
-/*   Updated: 2024/01/18 15:08:16 by flopez-r         ###   ########.fr       */
+/*   Updated: 2024/01/18 15:39:20 by flopez-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ char	**create_map(int fd)
 	return (matrix);
 }
 
-//																															Checker 1 (el mapa debe ser cuadrilatero)
+//Checker 1 (el mapa debe ser cuadrilatero)
 void	check_quadrilateral(char **map)
 {
 	int	i;
@@ -66,7 +66,7 @@ void	check_quadrilateral(char **map)
 	}
 }
 
-//																															Checker 2 (el mapa debe estar dentro de paredes)
+//Checker 2 (el mapa debe estar dentro de paredes)
 void	check_is_inside_walls(char	**map)
 {
 	int	i;
@@ -94,13 +94,18 @@ void	check_is_inside_walls(char	**map)
 	//Verificar na ultima linea
 	i -= 1;
 	width = 0;
-	while (map[i])
+	while (map[i][width])
 	{
 		if (map[i][width] != '1')
 			ft_perror("Map must be inside walls");
 		width++;
 	}
 }
+
+// void	check_valid_exit(matrix)
+// {
+	
+// }
 
 //A funçao verifica se um mapa é valido
 void	check_map(char *path)
@@ -109,6 +114,7 @@ void	check_map(char *path)
 	int		fd;
 
 	fd = open(path, O_RDONLY);
+	//Chequear si el path es valido
 
 	//Get map
 	matrix = create_map(fd);
@@ -124,7 +130,8 @@ void	check_map(char *path)
 
 	//Checkers
 	check_quadrilateral(matrix);//Done
-	check_is_inside_walls(matrix);
+	check_is_inside_walls(matrix);//Done
+	// check_valid_exit(matrix);
 	
 }
 
