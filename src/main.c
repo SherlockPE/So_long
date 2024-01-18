@@ -6,7 +6,7 @@
 /*   By: flopez-r <flopez-r@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/16 16:15:36 by flopez-r          #+#    #+#             */
-/*   Updated: 2024/01/18 13:57:47 by flopez-r         ###   ########.fr       */
+/*   Updated: 2024/01/18 15:08:16 by flopez-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	ft_perror(char *message)
 	exit(EXIT_FAILURE);
 }
 
-//Function reads an archive and return a Matrix of the map
+//A funçao lê um arquivo e retorna uma matriz no mapa
 char	**create_map(int fd)
 {
 	char	**matrix;
@@ -73,6 +73,7 @@ void	check_is_inside_walls(char	**map)
 	int	width;
 
 	//Achar o primeiro comprimento (1)
+	//E comprovar o primeira fila
 	i = 0;
 	width = 0;
 	while (map[i][width] != '\n')
@@ -81,10 +82,7 @@ void	check_is_inside_walls(char	**map)
 			ft_perror("Map must be inside walls");
 		width++;
 	}
-/* 	ft_printf("El ancho del mapa es: %d\n", width);
-	ft_printf("Ultima posicion de %d: %c\n", i, map[i][width - 1]); */
-	
-	
+
 	//Verificar as beiras (2)
 	while (map[i])
 	{
@@ -92,39 +90,25 @@ void	check_is_inside_walls(char	**map)
 			ft_perror("Map must be inside walls");
 		i++;
 	}
-	
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-	
+	//Verificar na ultima linea
+	i -= 1;
+	width = 0;
+	while (map[i])
+	{
+		if (map[i][width] != '1')
+			ft_perror("Map must be inside walls");
+		width++;
+	}
 }
 
-//Function checks if a map is valid to play
-void	check_map(char *map)
+//A funçao verifica se um mapa é valido
+void	check_map(char *path)
 {
 	char	**matrix;
 	int		fd;
 
-	fd = open(map, O_RDONLY);
+	fd = open(path, O_RDONLY);
 
 	//Get map
 	matrix = create_map(fd);
@@ -144,14 +128,12 @@ void	check_map(char *map)
 	
 }
 
-
-
 int	main(int argc, char *argv[])
 {
 	if (argc <= 1)
 		ft_perror("Arguments not valid");
 
-
 	check_map(argv[1]);
+	ft_printf("O MAPA ESTA BEM");
 	return (0);
 }
