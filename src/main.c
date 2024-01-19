@@ -6,7 +6,7 @@
 /*   By: flopez-r <flopez-r@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/16 16:15:36 by flopez-r          #+#    #+#             */
-/*   Updated: 2024/01/19 11:46:46 by flopez-r         ###   ########.fr       */
+/*   Updated: 2024/01/19 12:20:01 by flopez-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 
 int	main(int argc, char *argv[])
 {
-	int		fd;
 	char	**matrix;
 
 	//Check arguments
@@ -24,13 +23,8 @@ int	main(int argc, char *argv[])
 	//Check extention
 	check_extention(argv[1]);
 
-	//Obtener file descriptor
-	fd = open(argv[1], O_RDONLY);
-	if (fd < 0)
-		ft_perror("No se pudo abrir el archivo");
-
 	//Get map
-	matrix = create_map(fd);
+	matrix = create_map(argv[1]);
 
 	//Check if map is ok
 	check_map(matrix);
