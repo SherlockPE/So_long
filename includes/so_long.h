@@ -6,7 +6,7 @@
 /*   By: flopez-r <flopez-r@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/16 15:10:04 by flopez-r          #+#    #+#             */
-/*   Updated: 2024/01/19 12:19:44 by flopez-r         ###   ########.fr       */
+/*   Updated: 2024/01/19 16:21:23 by flopez-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 //Utils
 void	ft_perror(char *message);
 char	**create_map(char *path);
+void	free_map(char **map);
 
 //Checkers
 void	check_map(char **matrix);

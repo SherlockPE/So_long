@@ -6,7 +6,7 @@
 /*   By: flopez-r <flopez-r@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/18 15:42:25 by flopez-r          #+#    #+#             */
-/*   Updated: 2024/01/19 13:49:15 by flopez-r         ###   ########.fr       */
+/*   Updated: 2024/01/19 18:39:26 by flopez-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,25 +66,32 @@ static void	check_is_inside_walls(char **map)
 	while (map[i][width])
 	{
 		if (map[i][width] != '1')
-			ft_perror("Map must be inside walls 🏰");
+			ft_perror("The last line of the must be an entire wall🏰");
 		width++;
 	}
 }
 
-void	check_end_and_player(char c, int *j)
+void	check_EP_ocurrences(char c, int *j, int	last)
 {
 	static int	p;
 	static int	e;
-	
-	if (c = 'P')
+
+	if (c == 'P')
 		p++;
 	else if (c == 'E')
 		e++;
 	if (p > 1)
-		ft_perror("Map can't have more than 1 player inside 🦔");
+		ft_perror("Map canoot have more than 1 player inside ");
 	if (e > 1)
-		ft_perror("Map can't have more than 1 exit inside ");
-	*j++;
+		ft_perror("Map can't have more than 1 exit inside");
+	if (last)
+	{
+		if (p < 1)
+			ft_perror("Map need at least 1 player inside");
+		if (e < 1)
+			ft_perror("Map must have 1 exit");
+	}
+	(*j)++;
 }
 
 void	check_cells(char **map)
@@ -104,17 +111,23 @@ void	check_cells(char **map)
 			if (c == '1' || c == '0' || c == 'C' || c == '\n')
 				j++;
 			else if (c == 'E' || c == 'P')
-				check_end_and_player(c, &j);
+				check_EP_ocurrences(c, &j, 0);
 			else
 				ft_perror("Caracteres el mapa no soportados 🚷");
 		}
 		i++;
 	}
+	check_EP_ocurrences('A', &j, 1);
 }
 
 //A funçao verifica se um mapa é valido
 void	check_map(char **matrix)
 {
+	if (!matrix[0])
+	{
+		free_map(matrix);
+		ft_perror("Mapa no valido 🍙");
+	}
 	//Imprimir mapa
 	int i = 0;
 	while (matrix[i])
@@ -125,8 +138,8 @@ void	check_map(char **matrix)
 	ft_printf("\n");
 
 	//Checkers
-	check_cells(matrix);
 	check_quadrilateral(matrix);   //Done
 	check_is_inside_walls(matrix); //Done
-									// check_valid_exit(matrix);
+	check_cells(matrix);
+	// check_valid_exit(matrix);
 }

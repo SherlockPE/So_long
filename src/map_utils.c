@@ -6,7 +6,7 @@
 /*   By: flopez-r <flopez-r@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/19 12:13:19 by flopez-r          #+#    #+#             */
-/*   Updated: 2024/01/19 12:18:46 by flopez-r         ###   ########.fr       */
+/*   Updated: 2024/01/19 18:34:52 by flopez-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,11 +28,15 @@ char	**create_map(char	*path)
 	//Darle tamaño al mapa
 	alto = 32;
 	matrix = (char **)ft_calloc(alto + 1, sizeof(char *));
+	if (!matrix)
+		ft_perror("Malloc error\n");
 	//Llenar el mapa
 	i = 0;
-	while (i < alto)
+	while (1)
 	{
 		matrix[i] = get_next_line(fd);
+		if (matrix[i] == 0)
+			break;		
 		i++;
 	}
 	return (matrix);
