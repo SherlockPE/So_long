@@ -6,7 +6,7 @@
 /*   By: flopez-r <flopez-r@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/16 15:10:04 by flopez-r          #+#    #+#             */
-/*   Updated: 2024/01/20 15:14:11 by flopez-r         ###   ########.fr       */
+/*   Updated: 2024/01/20 18:47:34 by flopez-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,5 +36,6 @@ void	free_map(char **map);
 //Checkers
 void	check_map(char **matrix);
 void	check_extention(char *path);
+void    check_valid_exit(char **map);
 
 #endif

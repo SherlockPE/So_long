@@ -6,7 +6,7 @@
 /*   By: flopez-r <flopez-r@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/18 15:42:25 by flopez-r          #+#    #+#             */
-/*   Updated: 2024/01/20 12:46:21 by flopez-r         ###   ########.fr       */
+/*   Updated: 2024/01/20 18:47:51 by flopez-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -146,5 +146,5 @@ void	check_map(char **matrix)
 	check_quadrilateral(matrix);   //Done
 	check_is_inside_walls(matrix); //Done
 	check_cells(matrix);
-	// check_valid_exit(matrix);
+	check_valid_exit(matrix);
 }

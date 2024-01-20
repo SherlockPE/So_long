@@ -6,7 +6,7 @@
 #    By: flopez-r <flopez-r@student.42madrid.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/01/16 15:12:06 by flopez-r          #+#    #+#              #
-#    Updated: 2024/01/19 13:05:23 by flopez-r         ###   ########.fr        #
+#    Updated: 2024/01/20 18:48:24 by flopez-r         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,6 +15,7 @@ NAME := so_long
 SRC :=	src/main.c \
 		src/check_map.c \
 		src/map_utils.c \
+		src/valid_exit.c \
 		src/utils.c
 OBJ := $(SRC:.c=.o)
 
