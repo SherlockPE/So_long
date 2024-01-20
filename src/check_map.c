@@ -6,7 +6,7 @@
 /*   By: flopez-r <flopez-r@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/18 15:42:25 by flopez-r          #+#    #+#             */
-/*   Updated: 2024/01/19 18:39:26 by flopez-r         ###   ########.fr       */
+/*   Updated: 2024/01/20 12:46:21 by flopez-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,13 +71,16 @@ static void	check_is_inside_walls(char **map)
 	}
 }
 
-void	check_EP_ocurrences(char c, int *j, int	last)
+void	check_EPC_ocurrences(char c, int *j, int	last)
 {
 	static int	p;
 	static int	e;
+	static int	col;
 
 	if (c == 'P')
 		p++;
+	else if (c == 'C')
+		col++;
 	else if (c == 'E')
 		e++;
 	if (p > 1)
@@ -90,6 +93,8 @@ void	check_EP_ocurrences(char c, int *j, int	last)
 			ft_perror("Map need at least 1 player inside");
 		if (e < 1)
 			ft_perror("Map must have 1 exit");
+		if (col <= 0)
+			ft_perror("Map must have 1 colleccionable ");
 	}
 	(*j)++;
 }
@@ -108,16 +113,16 @@ void	check_cells(char **map)
 		{
 			c = map[i][j];
 			c = ft_toupper(c);
-			if (c == '1' || c == '0' || c == 'C' || c == '\n')
+			if (c == '1' || c == '0' || c == '\n')
 				j++;
-			else if (c == 'E' || c == 'P')
-				check_EP_ocurrences(c, &j, 0);
+			else if (c == 'E' || c == 'P' || c == 'C')
+				check_EPC_ocurrences(c, &j, 0);
 			else
 				ft_perror("Caracteres el mapa no soportados 🚷");
 		}
 		i++;
 	}
-	check_EP_ocurrences('A', &j, 1);
+	check_EPC_ocurrences('A', &j, 1);
 }
 
 //A funçao verifica se um mapa é valido
