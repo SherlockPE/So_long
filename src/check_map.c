@@ -6,7 +6,7 @@
 /*   By: flopez-r <flopez-r@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/18 15:42:25 by flopez-r          #+#    #+#             */
-/*   Updated: 2024/01/20 18:47:51 by flopez-r         ###   ########.fr       */
+/*   Updated: 2024/01/22 14:05:39 by flopez-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,6 +71,9 @@ static void	check_is_inside_walls(char **map)
 	}
 }
 
+//Checker 3 (El mapa debe tener:
+//	1) No más de 1 End
+//	2) Solo 1 Player)
 void	check_EPC_ocurrences(char c, int *j, int	last)
 {
 	static int	p;
@@ -99,6 +102,7 @@ void	check_EPC_ocurrences(char c, int *j, int	last)
 	(*j)++;
 }
 
+//Checker 4 (El mapa solo debe tener los caracteres "1, 0, E, P, C")
 void	check_cells(char **map)
 {
 	int		i;

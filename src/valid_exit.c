@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   valid_exit.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fabriciolopez <fabriciolopez@student.42    +#+  +:+       +#+        */
+/*   By: flopez-r <flopez-r@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/20 18:37:38 by flopez-r          #+#    #+#             */
-/*   Updated: 2024/01/21 17:34:07 by fabriciolop      ###   ########.fr       */
+/*   Updated: 2024/01/22 14:08:39 by flopez-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,16 @@ void	discount_values(char actual_pos, int *col, int *end)
 		(*end)--;
 }
 
+void	check_viality(char actual_pos)
+{
+	actual_pos = ft_toupper(actual_pos);
+	if (actual_pos == '1')
+	{
+		/* code */
+	}
+		
+}
+
 int	drop_water(char **map, int *cords, int *col, int *end)
 {
 	int		sum_i;
@@ -57,10 +67,18 @@ int	drop_water(char **map, int *cords, int *col, int *end)
 	char	actual_pos;
 
 	sum_i = -1;
+
+	//Actual position of the player
 	actual_pos = map[cords[0]][cords[1]];
+	
+	//Discount collecctionables or ends of the function
 	discount_values(actual_pos, col, end);
+
+	//Check of the collectionables or ends of the actual caracter value
 	if (*col == 0 && end == 0)
 		return (1);
+
+	//Drop water
 	ft_printf("\n--------------Check water function-----------\n");
 	while (sum_i <= 1)
 	{
@@ -69,6 +87,7 @@ int	drop_water(char **map, int *cords, int *col, int *end)
 		{
 			actual_pos = map[cords[0] + sum_i][cords[1] + sum_j];
 			ft_printf("%c", actual_pos);
+			check_viality(actual_pos);
 			sum_j++;
 		}
 		sum_i++;
@@ -77,7 +96,7 @@ int	drop_water(char **map, int *cords, int *col, int *end)
 	return (0);
 }
 
-// Principal function
+//	Checker 4 (El mapa debe ser jugable)
 void	check_valid_exit(char **map)
 {
 	int	col;
@@ -85,10 +104,12 @@ void	check_valid_exit(char **map)
 	int	cords_player[2];
 
 	end = 0;
+	//Count how many collectionables are in the map and get the P cords
 	count_col_and_check_cords(map, &col, cords_player);
 	ft_printf("\nCantidad de coleccionables: %d\n", col);
 	ft_printf("\nPlayer is in (%d, %d)", cords_player[0], cords_player[1]);
+	drop_water(map, cords_player, &col, &end);
 	// ft_printf("\n%c\n", map[cords_player[0]][cords_player[1]]);
-	if (!drop_water(map, cords_player, &col, &end))
-		ft_perror(RED"The actual map, doesnt have a valid exit"RESET);
+	// if (!drop_water(map, cords_player, &col, &end))
+	// 	ft_perror("The actual map, doesnt have a valid exit");
 }
