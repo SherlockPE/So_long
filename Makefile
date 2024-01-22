@@ -6,7 +6,7 @@
 #    By: flopez-r <flopez-r@student.42madrid.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/01/16 15:12:06 by flopez-r          #+#    #+#              #
-#    Updated: 2024/01/20 18:48:24 by flopez-r         ###   ########.fr        #
+#    Updated: 2024/01/22 18:51:27 by flopez-r         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,7 +20,7 @@ SRC :=	src/main.c \
 OBJ := $(SRC:.c=.o)
 
 CC := gcc
-CFLAGS := -Wall -Wextra -Werror -I includes -g3
+CFLAGS := -Wall -Wextra -Werror -I includes
 INCLUDE_FLAG = -I includes
 # OBJ = $(patsubst $(SRC), $(SRC:.c=.o))
 

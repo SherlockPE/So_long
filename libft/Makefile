@@ -6,7 +6,7 @@
 #    By: flopez-r <flopez-r@student.42madrid.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/10/05 13:08:07 by flopez-r          #+#    #+#              #
-#    Updated: 2024/01/17 15:59:11 by flopez-r         ###   ########.fr        #
+#    Updated: 2024/01/22 18:51:35 by flopez-r         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -39,7 +39,7 @@ OBJ = $(SRC:.c=.o)
 NAME = libft.a
 
 CC := gcc
-CFLAGS := -Wall -Wextra -Werror -g3
+CFLAGS := -Wall -Wextra -Werror
 
 all: $(NAME)
 

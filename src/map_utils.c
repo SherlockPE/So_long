@@ -6,11 +6,32 @@
 /*   By: flopez-r <flopez-r@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/19 12:13:19 by flopez-r          #+#    #+#             */
-/*   Updated: 2024/01/22 16:10:57 by flopez-r         ###   ########.fr       */
+/*   Updated: 2024/01/22 18:48:19 by flopez-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <so_long.h>
+
+int	get_alto(char *path)
+{
+	int	fd;
+	int	i;
+	char *line;
+	
+	i = 0;
+	fd = open(path, O_RDONLY);
+	line = "";
+	while (line)
+	{
+		line = get_next_line(fd);
+		if (!line)
+			break ;
+		free(line);
+		i++;
+	}
+	close(fd);
+	return (i);
+}
 
 //A funçao lê um arquivo e retorna uma matriz no mapa
 char	**create_map(char *path)
@@ -19,13 +40,15 @@ char	**create_map(char *path)
 	int		alto;
 	int		i;
 	int		fd;
+	
+	//Get alto
+	alto = get_alto(path);
 
 	//Obtener file descriptor
 	fd = open(path, O_RDONLY);
 	if (fd < 0)
 		ft_perror("No se pudo abrir el archivo");
 	//Darle tamaño al mapa
-	alto = 32;
 	matrix = (char **)ft_calloc(alto + 1, sizeof(char *));
 	if (!matrix)
 		ft_perror("Malloc error\n");
@@ -38,6 +61,7 @@ char	**create_map(char *path)
 			break ;
 		i++;
 	}
+	close(fd);
 	return (matrix);
 }
 
