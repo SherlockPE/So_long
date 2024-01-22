@@ -6,7 +6,7 @@
 /*   By: flopez-r <flopez-r@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/18 15:42:25 by flopez-r          #+#    #+#             */
-/*   Updated: 2024/01/22 14:05:39 by flopez-r         ###   ########.fr       */
+/*   Updated: 2024/01/22 15:07:40 by flopez-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -132,23 +132,16 @@ void	check_cells(char **map)
 //A funçao verifica se um mapa é valido
 void	check_map(char **matrix)
 {
+	//If the map doesnt have anything the program exit withs error
 	if (!matrix[0])
 	{
 		free_map(matrix);
 		ft_perror("Mapa no valido 🍙");
 	}
-	//Imprimir mapa
-	int i = 0;
-	while (matrix[i])
-	{
-		ft_printf("%s", matrix[i]);
-		i++;
-	}
-	ft_printf("\n");
 
 	//Checkers
-	check_quadrilateral(matrix);   //Done
-	check_is_inside_walls(matrix); //Done
-	check_cells(matrix);
-	check_valid_exit(matrix);
+	check_quadrilateral(matrix);	//1 Done
+	check_is_inside_walls(matrix);	//2 Done
+	check_cells(matrix);			//3 Done
+	check_valid_exit(matrix);		//4 in progress
 }

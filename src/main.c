@@ -6,7 +6,7 @@
 /*   By: flopez-r <flopez-r@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/16 16:15:36 by flopez-r          #+#    #+#             */
-/*   Updated: 2024/01/20 15:15:56 by flopez-r         ###   ########.fr       */
+/*   Updated: 2024/01/22 16:53:32 by flopez-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ int	main(int argc, char *argv[])
 
 	free_map(matrix);
 	/* crear funcion para liberar el mapa */
-	
+
 	ft_printf(GREEN "\nMAP IS OK ✅\n"RESET);
 	return (0);
 }
