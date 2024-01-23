@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   valid_exit.c                                       :+:      :+:    :+:   */
+/*   map_valid_exit.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: flopez-r <flopez-r@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/20 18:37:38 by flopez-r          #+#    #+#             */
-/*   Updated: 2024/01/23 12:34:30 by flopez-r         ###   ########.fr       */
+/*   Updated: 2024/01/23 16:52:26 by flopez-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -132,13 +132,13 @@ void	check_valid_exit(char *path)
 	end = 1;
 	//Count how many collectionables are in the map
 	count_collectibles(map, &col);
-	ft_printf("Cantidad de col: %d\n", col);
+	ft_printf("Cantidad de collectibles: %d\n", col);
 
 	//Expand player if they are in a "0, C, E"
 	look_for_players(map, &col, &end);
 	
 	//Free the copy of the map 
-	print_map(map);
+	// print_map(map);
 	free_map(map);
 	
 	//Check if the path is valid
@@ -146,5 +146,5 @@ void	check_valid_exit(char *path)
 		ft_perror("El mapa no es jugable ⛹️‍♂️");
 
 	//Print cant od collectibles
-	ft_printf("Cantidad de col after water: %d\n", col);
+	// ft_printf("Cantidad de col after water: %d\n", col);
 }

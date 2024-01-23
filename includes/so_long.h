@@ -6,7 +6,7 @@
 /*   By: flopez-r <flopez-r@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/16 15:10:04 by flopez-r          #+#    #+#             */
-/*   Updated: 2024/01/23 12:40:42 by flopez-r         ###   ########.fr       */
+/*   Updated: 2024/01/23 16:35:18 by flopez-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 # include "../libft/libft.h"
 # include <fcntl.h>
+# include <mlx.h>
 
 // Colours
 # define RED "\033[0;31m"
