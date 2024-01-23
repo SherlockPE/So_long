@@ -6,7 +6,7 @@
 /*   By: flopez-r <flopez-r@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/16 16:15:36 by flopez-r          #+#    #+#             */
-/*   Updated: 2024/01/22 18:41:59 by flopez-r         ###   ########.fr       */
+/*   Updated: 2024/01/23 12:54:30 by flopez-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,10 +31,14 @@ int	main(int argc, char *argv[])
 
 	//Get map
 	matrix = create_map(argv[1]);
-	print_map(matrix);
-	//Check if map is ok
-	check_map(matrix);
 
+	//Checkers 1 2 3 4
+	print_map(matrix);
+	check_map(matrix);
+	check_valid_exit(argv[1]);	//4 Done
+
+	//Print and free map
+	// print_map(matrix);
 	free_map(matrix);
 	/* crear funcion para liberar el mapa */
 

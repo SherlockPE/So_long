@@ -6,7 +6,7 @@
 /*   By: flopez-r <flopez-r@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/19 12:13:19 by flopez-r          #+#    #+#             */
-/*   Updated: 2024/01/22 18:48:19 by flopez-r         ###   ########.fr       */
+/*   Updated: 2024/01/23 12:53:16 by flopez-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,10 @@
 
 int	get_alto(char *path)
 {
-	int	fd;
-	int	i;
-	char *line;
-	
+	int		fd;
+	int		i;
+	char	*line;
+
 	i = 0;
 	fd = open(path, O_RDONLY);
 	line = "";
@@ -40,10 +40,9 @@ char	**create_map(char *path)
 	int		alto;
 	int		i;
 	int		fd;
-	
+
 	//Get alto
 	alto = get_alto(path);
-
 	//Obtener file descriptor
 	fd = open(path, O_RDONLY);
 	if (fd < 0)
@@ -109,15 +108,15 @@ void	print_map(char **matrix)
 		{
 			actual = ft_toupper(matrix[i][j]);
 			if (actual == '1')
-				ft_printf(BLUE"%c"RESET, actual);
+				ft_printf(BLUE "%c" RESET, actual);
 			else if (actual == '0')
 				ft_printf("%c", actual);
 			else if (actual == 'P')
-				ft_printf(RED"%c"RESET, actual);
+				ft_printf(RED "%c" RESET, actual);
 			else if (actual == 'C')
-				ft_printf(YELLOW"%c"RESET, actual);
+				ft_printf(YELLOW "%c" RESET, actual);
 			else if (actual == 'E')
-				ft_printf(GREEN"%c"RESET, actual);
+				ft_printf(GREEN "%c" RESET, actual);
 			else
 				ft_printf("%c", actual);
 			j++;

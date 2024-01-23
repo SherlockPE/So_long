@@ -6,7 +6,7 @@
 /*   By: flopez-r <flopez-r@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/20 18:37:38 by flopez-r          #+#    #+#             */
-/*   Updated: 2024/01/22 18:15:39 by flopez-r         ###   ########.fr       */
+/*   Updated: 2024/01/23 12:34:30 by flopez-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,18 +33,6 @@ int	count_collectibles(char **map, int *col)
 	}
 	return (*col);
 }
-
-// //Function Discount the value of collectibles and END
-// void	discount_values(char actual_pos, int *col, int *end)
-// {
-// 	if (actual_pos == 'C')
-// 		(*col)--;
-// 	else if (actual_pos == 'E')
-// 		(*end)--;
-// 	if (*col == 0 && *end == 0)
-// 		return ;
-// 	// ft_perror("El mapa no es jugable ⛹️‍♂️");
-// }
 
 //Function looks for "0, E, C" characters and transforms to a P
 int	expand_players(char **map, int i, int j, int *col)
@@ -132,31 +120,31 @@ void	look_for_players(char **map, int *col, int *end)
 
 
 //	Checker 4 (El mapa debe ser jugable)
-void	check_valid_exit(char **map)
+void	check_valid_exit(char *path)
 {
 	int		col;
 	int		end;
-	char	**map_copy;
+	char	**map;
+
+	//Get a new map 
+	map = create_map(path);
 
 	end = 1;
 	//Count how many collectionables are in the map
 	count_collectibles(map, &col);
-	ft_printf("Cantidad de coleccionables: %d\n", col);
-
-	//Print map
-	print_map(map);
+	ft_printf("Cantidad de col: %d\n", col);
 
 	//Expand player if they are in a "0, C, E"
-	map_copy = map;
-	look_for_players(map_copy, &col, &end);
-
+	look_for_players(map, &col, &end);
+	
+	//Free the copy of the map 
+	print_map(map);
+	free_map(map);
+	
 	//Check if the path is valid
 	if (col != 0 || end != 0)
 		ft_perror("El mapa no es jugable ⛹️‍♂️");
 
-	//Print map
-	print_map(map);
-
 	//Print cant od collectibles
-	ft_printf("Cantidad de coleccionables: %d\n", col);
+	ft_printf("Cantidad de col after water: %d\n", col);
 }
