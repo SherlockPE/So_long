@@ -6,7 +6,7 @@
 /*   By: flopez-r <flopez-r@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/16 15:10:04 by flopez-r          #+#    #+#             */
-/*   Updated: 2024/01/23 16:35:18 by flopez-r         ###   ########.fr       */
+/*   Updated: 2024/01/23 16:59:17 by flopez-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,5 +40,7 @@ char	**copy_map(char **map);
 void	check_map(char **matrix);
 void	check_extention(char *path);
 void	check_valid_exit(char *path);
+
+//Grafics
 
 #endif

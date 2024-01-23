@@ -6,7 +6,7 @@
 /*   By: flopez-r <flopez-r@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/16 16:15:36 by flopez-r          #+#    #+#             */
-/*   Updated: 2024/01/23 16:51:06 by flopez-r         ###   ########.fr       */
+/*   Updated: 2024/01/23 17:01:15 by flopez-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ int	main(int argc, char *argv[])
 	ft_printf(GREEN "\nMAP IS OK ✅\n"RESET);
 
 	//GRAFICS										<------SECOND PART IN PROGRESS
-	// print_window();
+	start_grafics(matrix);
 
 	free_map(matrix);
 	return (0);
