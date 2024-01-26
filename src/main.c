@@ -6,7 +6,7 @@
 /*   By: flopez-r <flopez-r@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/16 16:15:36 by flopez-r          #+#    #+#             */
-/*   Updated: 2024/01/26 16:22:00 by flopez-r         ###   ########.fr       */
+/*   Updated: 2024/01/26 17:46:49 by flopez-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,9 @@ int	main(int argc, char *argv[])
 	char	**matrix;
 	void	*mlx_window;
 
+
+	mlx = 0;
+	mlx_window = 0;
 	// atexit(detect_leaks);
 	//MAP											<------FIRST PART DONE
 	//Check arguments
@@ -51,6 +54,7 @@ int	main(int argc, char *argv[])
 
 	//put image
 	put_images(mlx, mlx_window, img);
+	mlx_loop(mlx);
 
 	free_map(matrix);
 	return (0);
