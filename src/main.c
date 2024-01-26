@@ -6,7 +6,7 @@
 /*   By: flopez-r <flopez-r@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/16 16:15:36 by flopez-r          #+#    #+#             */
-/*   Updated: 2024/01/23 17:01:15 by flopez-r         ###   ########.fr       */
+/*   Updated: 2024/01/26 16:22:00 by flopez-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,9 @@ void	detect_leaks(void)
 
 int	main(int argc, char *argv[])
 {
+	void	*mlx;
 	char	**matrix;
+	void	*mlx_window;
 
 	// atexit(detect_leaks);
 	//MAP											<------FIRST PART DONE
@@ -41,8 +43,14 @@ int	main(int argc, char *argv[])
 	check_valid_exit(argv[1]);	//4 Done
 	ft_printf(GREEN "\nMAP IS OK ✅\n"RESET);
 
-	//GRAFICS										<------SECOND PART IN PROGRESS
-	start_grafics(matrix);
+	//GRAFICS		 								<------SECOND PART IN PROGRESS
+	start_grafics(matrix, &mlx, &mlx_window); //Done
+
+	//Create image	
+	void	*img = create_images(mlx, "./textures/monigote.xpm");//In progress
+
+	//put image
+	put_images(mlx, mlx_window, img);
 
 	free_map(matrix);
 	return (0);

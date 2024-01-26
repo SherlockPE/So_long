@@ -6,12 +6,16 @@
 /*   By: flopez-r <flopez-r@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/16 15:10:04 by flopez-r          #+#    #+#             */
-/*   Updated: 2024/01/23 16:59:17 by flopez-r         ###   ########.fr       */
+/*   Updated: 2024/01/26 16:13:07 by flopez-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef SO_LONG_H
 # define SO_LONG_H
+
+# ifndef PIXEL_SIZE
+#  define PIXEL_SIZE 64
+# endif
 
 # include "../libft/libft.h"
 # include <fcntl.h>
@@ -42,5 +46,8 @@ void	check_extention(char *path);
 void	check_valid_exit(char *path);
 
 //Grafics
+void    start_grafics(char **matrix, void *start, void *window);
+void	*create_images(void	*mlx, char *path);
+void	put_images(void *mlx, void *mlx_window, void *img);
 
 #endif
