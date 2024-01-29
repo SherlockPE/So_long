@@ -6,7 +6,7 @@
 /*   By: flopez-r <flopez-r@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/16 16:15:36 by flopez-r          #+#    #+#             */
-/*   Updated: 2024/01/29 12:45:55 by flopez-r         ###   ########.fr       */
+/*   Updated: 2024/01/29 18:50:30 by flopez-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,8 @@ int	main(int argc, char *argv[])
 {
 	// void	*mlx;
 	char	**matrix;
-	grafic_init	inicializer;
-	img_game	images_data;
+	t_grafic_init	inicializer;
+	t_img_game	images_data;
 
 	//MAP											<------FIRST PART DONE
 	//Check arguments
@@ -46,21 +46,11 @@ int	main(int argc, char *argv[])
 	//GRAFICS		 								<------SECOND PART IN PROGRESS
 	start_grafics(matrix, &inicializer.mlx, &inicializer.window); //Done
 
-
-	//NEW IMPLEMENTATION !!!!!!!
 	//Create image
 	create_images(&images_data, inicializer);
+	put_background(inicializer, images_data, matrix);
+	put_cosas(inicializer, images_data, matrix);
 
-	//put image
-	put_images(inicializer.mlx, inicializer.window, images_data);
-
-	
-	//OLD PART !!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-	// //Create image
-	// void	*img = create_images(inicializer.mlx, "./textures/monigote.xpm");//In progress
-
-	// //put image
-	// put_images(inicializer.mlx, inicializer.window, img);
 	mlx_loop(inicializer.mlx);
 
 	free_map(matrix);

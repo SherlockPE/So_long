@@ -6,7 +6,7 @@
 /*   By: flopez-r <flopez-r@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/16 15:10:04 by flopez-r          #+#    #+#             */
-/*   Updated: 2024/01/29 12:49:58 by flopez-r         ###   ########.fr       */
+/*   Updated: 2024/01/29 18:50:52 by flopez-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,20 +22,21 @@
 # include <mlx.h>
 
 //Structure
-typedef struct so_long
+typedef struct s_grafic_init
 {
 	void	*mlx;
 	void	*window;
-}			grafic_init;
+}			t_grafic_init;
 
-typedef struct images
+typedef struct s_img_game
 {
 	void	*player;
 	void	*enemies;
+	void	*end;
 	void	*colectibles;
 	void	*walls;
 	void	*floor;
-}			img_game;
+}			t_img_game;
 
 // Colours
 # define RED "\033[0;31m"
@@ -63,8 +64,8 @@ void		check_valid_exit(char *path);
 
 //Grafics
 void		start_grafics(char **matrix, void **start, void **window);
-void		create_images(img_game *img_ctent, grafic_init init);
-// void		*create_images(void *mlx, char *path);
-void		put_images(void *mlx, void *mlx_window, img_game img_data);
+void		create_images(t_img_game *img_ctent, t_grafic_init init);
+void		put_background(t_grafic_init init, t_img_game img_data, char **map);
+void		put_cosas(t_grafic_init init, t_img_game img_data, char **map);
 
 #endif
