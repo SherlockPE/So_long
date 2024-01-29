@@ -6,7 +6,7 @@
 /*   By: flopez-r <flopez-r@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/23 16:58:15 by flopez-r          #+#    #+#             */
-/*   Updated: 2024/01/29 18:51:14 by flopez-r         ###   ########.fr       */
+/*   Updated: 2024/01/29 19:17:28 by flopez-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,10 +35,10 @@ void	create_images(t_img_game *img_dta, t_grafic_init init)
 	int img_width;
 	int img_height;
 
-	img_dta->colectibles = mlx_xpm_file_to_image(init.mlx, "./textures/coin.xpm", &img_width, &img_height);
-	img_dta->floor = mlx_xpm_file_to_image(init.mlx, "./textures/pasto.xpm", &img_width, &img_height);
-	img_dta->player = mlx_xpm_file_to_image(init.mlx, "./textures/monigote.xpm", &img_width, &img_height);
-	img_dta->walls = mlx_xpm_file_to_image(init.mlx, "./textures/ladrillos.xpm", &img_width, &img_height);
+	img_dta->colectibles = mlx_xpm_file_to_image(init.mlx, "./textures/colects.xpm", &img_width, &img_height);
+	img_dta->floor = mlx_xpm_file_to_image(init.mlx, "./textures/floor.xpm", &img_width, &img_height);
+	img_dta->player = mlx_xpm_file_to_image(init.mlx, "./textures/player.xpm", &img_width, &img_height);
+	img_dta->walls = mlx_xpm_file_to_image(init.mlx, "./textures/walls.xpm", &img_width, &img_height);
 	img_dta->end = mlx_xpm_file_to_image(init.mlx, "./textures/exit.xpm", &img_width, &img_height);
 
 	if (!img_dta->colectibles || !img_dta->floor || !img_dta->player || !img_dta->walls)
