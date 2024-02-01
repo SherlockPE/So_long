@@ -6,7 +6,7 @@
 /*   By: flopez-r <flopez-r@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/23 16:58:15 by flopez-r          #+#    #+#             */
-/*   Updated: 2024/02/01 17:09:02 by flopez-r         ###   ########.fr       */
+/*   Updated: 2024/02/01 19:28:46 by flopez-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,20 +82,23 @@ void	put_background(t_data *data, char **map)
 	char	c;
 
 	i = 0;
+	ft_printf("PRIMER WHILE\n");
 	while (map[i])
 	{
 		j = 0;
-		c = map[i][j];
-		c = ft_toupper(c);
-		while (c != '\n' && c)
+		ft_printf("2DO WHILE\n");
+		while (map[i][j] && map[i][j] != '\n')
 		{
+			ft_printf("DENTRO DEL 2DO WHILE \n");
+			c = map[i][j];
+			c = ft_toupper(c);
 			if (c == '1')
 				put_img(data, data->img_data.walls, j, i);
-			else if (c == '0')
+			else if (c == '0' || c == 'P' || c == 'E' || c == 'C')
 				put_img(data, data->img_data.floor, j, i);
-			else if (c == 'E')
+			if (c == 'E')
 				put_img(data, data->img_data.end, j, i);
-			else if (c == 'C')
+			if (c == 'C')
 				put_img(data, data->img_data.colectibles, j, i);
 			j++;
 		}
@@ -105,7 +108,6 @@ void	put_background(t_data *data, char **map)
 
 void		deploy_playground(char **map, t_data *data)
 {
-	printf("Grafics ready LETSGO ");
 	start_grafics(map, data);
 	create_images(data);
 	put_background(data, map);

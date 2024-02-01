@@ -6,7 +6,7 @@
 /*   By: flopez-r <flopez-r@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/16 15:10:04 by flopez-r          #+#    #+#             */
-/*   Updated: 2024/02/01 16:46:30 by flopez-r         ###   ########.fr       */
+/*   Updated: 2024/02/01 20:00:32 by flopez-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,45 @@
 # include "../libft/libft.h"
 # include <fcntl.h>
 # include <mlx.h>
+
+//ESQ
+# ifndef ESC
+#  define ESC 53
+# endif
+
+//WASD
+# ifndef UP_L
+#  define UP_L 13
+# endif
+
+# ifndef LEFT_L
+#  define LEFT_L 0
+# endif
+
+# ifndef DOWN_L
+#  define DOWN_L 1
+# endif
+
+# ifndef RIGHT_L
+#  define RIGHT_L 2
+# endif
+
+//ARROWS
+# ifndef UP_D
+#  define UP_D 126
+# endif
+
+# ifndef LEFT_D
+#  define LEFT_D 123
+# endif
+
+# ifndef DOWN_D
+#  define DOWN_D 125
+# endif
+
+# ifndef RIGHT_D
+#  define RIGHT_D 124
+# endif
 
 //Structure
 typedef struct s_grafic_init
@@ -49,6 +88,10 @@ typedef struct s_data
 	t_grafic_init	g_data;
 	t_img_game		img_data;
 	t_cords			cords_player;
+	char			**map;
+
+	int				n_mv;
+	int				n_col;
 }					t_data;
 
 // Colours
@@ -63,6 +106,9 @@ typedef struct s_data
 //Background
 # define B_RED "\033[0;41m"
 
+//Map
+void				count_collectibles(char **map, int *col);
+
 //Utils
 void				ft_perror(char *message);
 char				**create_map(char *path);
@@ -76,7 +122,9 @@ void				check_extention(char *path);
 void				check_valid_exit(char *path);
 
 //Grafics
-void		deploy_playground(char **map, t_data *data);
-void		put_img(t_data *data, void *img, int x, int y);
+void				deploy_playground(char **map, t_data *data);
+void				put_background(t_data *data, char **map);
+void				put_img(t_data *data, void *img, int x, int y);
+int					key_events(int keycode, t_data *data);
 
 #endif

@@ -6,14 +6,14 @@
 /*   By: flopez-r <flopez-r@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/20 18:37:38 by flopez-r          #+#    #+#             */
-/*   Updated: 2024/01/23 16:52:26 by flopez-r         ###   ########.fr       */
+/*   Updated: 2024/02/01 20:00:15 by flopez-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <so_long.h>
 
 // Function count how many collectionables are in the map
-int	count_collectibles(char **map, int *col)
+void	count_collectibles(char **map, int *col)
 {
 	int	i;
 	int	j;
@@ -31,7 +31,6 @@ int	count_collectibles(char **map, int *col)
 		}
 		i++;
 	}
-	return (*col);
 }
 
 //Function looks for "0, E, C" characters and transforms to a P
