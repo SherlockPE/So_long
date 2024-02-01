@@ -6,7 +6,7 @@
 /*   By: flopez-r <flopez-r@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/16 16:15:36 by flopez-r          #+#    #+#             */
-/*   Updated: 2024/01/29 18:50:30 by flopez-r         ###   ########.fr       */
+/*   Updated: 2024/02/01 17:05:11 by flopez-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,38 @@ void	detect_leaks(void)
 	system("leaks so_long");
 }
 
+char	**checkers(char **argv)
+{
+	char	**map;
+	
+	map = create_map(argv[1]);
+	check_map(map);
+	check_valid_exit(argv[1]);
+	ft_printf(GREEN "\nMAP IS OK ✅\n"RESET);
+	return (map);
+}
+
 int	main(int argc, char *argv[])
+{
+	t_data	data;
+	char	**map;
+
+	//MAP											<------FIRST PART DONE
+	if (argc <= 1)
+		ft_perror("Arguments not valid");
+	check_extention(argv[1]);
+
+	map = checkers(argv);
+	print_map(map);
+
+	//GRAFICS	 								<------SECOND PART IN PROGRESS
+	deploy_playground(map, &data);
+	printf("LLegué aqui\n");
+	mlx_loop(data.g_data.mlx);
+	free_map(map);
+}
+
+/* int	main(int argc, char *argv[])
 {
 	// void	*mlx;
 	char	**matrix;
@@ -56,3 +87,4 @@ int	main(int argc, char *argv[])
 	free_map(matrix);
 	return (0);
 }
+ */

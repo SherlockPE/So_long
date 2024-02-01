@@ -6,7 +6,7 @@
 /*   By: flopez-r <flopez-r@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/16 15:10:04 by flopez-r          #+#    #+#             */
-/*   Updated: 2024/01/29 18:50:52 by flopez-r         ###   ########.fr       */
+/*   Updated: 2024/02/01 16:46:30 by flopez-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,19 +24,32 @@
 //Structure
 typedef struct s_grafic_init
 {
-	void	*mlx;
-	void	*window;
-}			t_grafic_init;
+	void			*mlx;
+	void			*window;
+}					t_grafic_init;
 
 typedef struct s_img_game
 {
-	void	*player;
-	void	*enemies;
-	void	*end;
-	void	*colectibles;
-	void	*walls;
-	void	*floor;
-}			t_img_game;
+	void			*player;
+	void			*enemies;
+	void			*end;
+	void			*colectibles;
+	void			*walls;
+	void			*floor;
+}					t_img_game;
+
+typedef struct s_cords
+{
+	int				x;
+	int				y;
+}					t_cords;
+
+typedef struct s_data
+{
+	t_grafic_init	g_data;
+	t_img_game		img_data;
+	t_cords			cords_player;
+}					t_data;
 
 // Colours
 # define RED "\033[0;31m"
@@ -51,21 +64,19 @@ typedef struct s_img_game
 # define B_RED "\033[0;41m"
 
 //Utils
-void		ft_perror(char *message);
-char		**create_map(char *path);
-void		free_map(char **map);
-void		print_map(char **matrix);
-char		**copy_map(char **map);
+void				ft_perror(char *message);
+char				**create_map(char *path);
+void				free_map(char **map);
+void				print_map(char **matrix);
+char				**copy_map(char **map);
 
 //Checkers
-void		check_map(char **matrix);
-void		check_extention(char *path);
-void		check_valid_exit(char *path);
+void				check_map(char **matrix);
+void				check_extention(char *path);
+void				check_valid_exit(char *path);
 
 //Grafics
-void		start_grafics(char **matrix, void **start, void **window);
-void		create_images(t_img_game *img_ctent, t_grafic_init init);
-void		put_background(t_grafic_init init, t_img_game img_data, char **map);
-void		put_cosas(t_grafic_init init, t_img_game img_data, char **map);
+void		deploy_playground(char **map, t_data *data);
+void		put_img(t_data *data, void *img, int x, int y);
 
 #endif

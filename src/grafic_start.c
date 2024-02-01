@@ -6,51 +6,53 @@
 /*   By: flopez-r <flopez-r@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/23 16:58:15 by flopez-r          #+#    #+#             */
-/*   Updated: 2024/01/29 19:17:28 by flopez-r         ###   ########.fr       */
+/*   Updated: 2024/02/01 17:09:02 by flopez-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <so_long.h>
 
-//Function starts 
-void    start_grafics(char **matrix, void **mlx, void **window)
+//Function starts
+void	start_grafics(char **matrix, t_data *data)
 {
-	int		alto;
-	int		ancho;
+	int	alto;
+	int	ancho;
 
 	alto = 0;
 	ancho = (ft_strlen(matrix[0]) - 1);
 	while (matrix[alto])
 		alto++;
-	*mlx = mlx_init();
-	if (!*mlx)
+	data->g_data.mlx = mlx_init();
+	if (!data->g_data.mlx)
 		ft_perror("start grafics fucntion error");
-	*window = mlx_new_window(*mlx, ancho * PIXEL_SIZE, alto * PIXEL_SIZE, "So_long");
-	if (!*window)
+	data->g_data.window = mlx_new_window(data->g_data.mlx, ancho * PIXEL_SIZE,
+			alto * PIXEL_SIZE, "So_long");
+	if (!data->g_data.window)
 		ft_perror("Problemas al crear la ventana");
 }
 
-void	create_images(t_img_game *img_dta, t_grafic_init init)
+void	create_images(t_data *data)
 {
-	int img_width;
-	int img_height;
+	int	img_width;
+	int	img_height;
 
-	img_dta->colectibles = mlx_xpm_file_to_image(init.mlx, "./textures/colects.xpm", &img_width, &img_height);
-	img_dta->floor = mlx_xpm_file_to_image(init.mlx, "./textures/floor.xpm", &img_width, &img_height);
-	img_dta->player = mlx_xpm_file_to_image(init.mlx, "./textures/player.xpm", &img_width, &img_height);
-	img_dta->walls = mlx_xpm_file_to_image(init.mlx, "./textures/walls.xpm", &img_width, &img_height);
-	img_dta->end = mlx_xpm_file_to_image(init.mlx, "./textures/exit.xpm", &img_width, &img_height);
-
-	if (!img_dta->colectibles || !img_dta->floor || !img_dta->player || !img_dta->walls)
+	data->img_data.colectibles = mlx_xpm_file_to_image(data->g_data.mlx, \
+		"./textures/colects.xpm", &img_width, &img_height);
+	data->img_data.floor = mlx_xpm_file_to_image(data->g_data.mlx, \
+		"./textures/floor.xpm", &img_width, &img_height);
+	data->img_data.player = mlx_xpm_file_to_image(data->g_data.mlx, \
+		"./textures/player.xpm", &img_width, &img_height);
+	data->img_data.walls = mlx_xpm_file_to_image(data->g_data.mlx, \
+		"./textures/walls.xpm", &img_width, &img_height);
+	data->img_data.end = mlx_xpm_file_to_image(data->g_data.mlx, \
+		"./textures/exit.xpm", &img_width, &img_height);
+	if (!data->img_data.colectibles || !data->img_data.floor
+		|| !data->img_data.player || !data->img_data.walls)
 		ft_perror("create images function error");
+	//mlx_destroy_image
 }
 
-void	put_img(t_grafic_init init, void *img, int x, int y)
-{
-	mlx_put_image_to_window(init.mlx, init.window, img, x, y);
-}
-
-void	put_cosas(t_grafic_init init, t_img_game img_data, char **map)
+void	search_player(t_data *data, char **map)
 {
 	int	i;
 	int	j;
@@ -62,34 +64,51 @@ void	put_cosas(t_grafic_init init, t_img_game img_data, char **map)
 		while (map[i][j])
 		{
 			if (map[i][j] == 'P')
-				put_img(init, img_data.player, j * PIXEL_SIZE, i * PIXEL_SIZE);
-			else if (map[i][j] == 'E')
-				put_img(init, img_data.end, j * PIXEL_SIZE, i * PIXEL_SIZE);
-			else if (map[i][j] == 'C')
-				put_img(init, img_data.colectibles, j * PIXEL_SIZE, i * PIXEL_SIZE);
+			{
+				data->cords_player.x = j;
+				data->cords_player.y = i;
+				return ;
+			}
 			j++;
 		}
 		i++;
 	}
 }
 
-void	put_background(t_grafic_init init, t_img_game img_data, char **map)
+void	put_background(t_data *data, char **map)
 {
-	int i;
-	int j;
+	int		i;
+	int		j;
+	char	c;
 
 	i = 0;
 	while (map[i])
 	{
 		j = 0;
-		while (map[i][j] != '\n' && map[i][j])
+		c = map[i][j];
+		c = ft_toupper(c);
+		while (c != '\n' && c)
 		{
-			if (map[i][j] == '1')
-				put_img(init, img_data.walls, j * PIXEL_SIZE, i * PIXEL_SIZE);
-			else if (map[i][j] == '0' || map[i][j] == 'P' || map[i][j] == 'E' || map[i][j] == 'C')
-				put_img(init, img_data.floor, j * PIXEL_SIZE, i * PIXEL_SIZE);
+			if (c == '1')
+				put_img(data, data->img_data.walls, j, i);
+			else if (c == '0')
+				put_img(data, data->img_data.floor, j, i);
+			else if (c == 'E')
+				put_img(data, data->img_data.end, j, i);
+			else if (c == 'C')
+				put_img(data, data->img_data.colectibles, j, i);
 			j++;
 		}
 		i++;
 	}
+}
+
+void		deploy_playground(char **map, t_data *data)
+{
+	printf("Grafics ready LETSGO ");
+	start_grafics(map, data);
+	create_images(data);
+	put_background(data, map);
+	search_player(data, map);
+	put_img(data, data->img_data.player, data->cords_player.x, data->cords_player.y);
 }
