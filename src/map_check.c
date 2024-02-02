@@ -6,7 +6,7 @@
 /*   By: flopez-r <flopez-r@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/18 15:42:25 by flopez-r          #+#    #+#             */
-/*   Updated: 2024/02/02 18:05:43 by flopez-r         ###   ########.fr       */
+/*   Updated: 2024/02/02 18:25:47 by flopez-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ static void	check_quadrilateral(char **map)
 	while (map[i][first_width] != '\n')
 		first_width++;
 	if (first_width >= 40)
-		ft_perror("El mapa es demasiado grande (width>=40)");
+		ft_perror("El mapa es demasiado grande (height>=21)");
 	/* ft_printf("El ancho del mapa es: %d\n", first_width); */
 	//Verificar que o mapa é um quadrilátero
 	while (map[++i])
@@ -36,8 +36,11 @@ static void	check_quadrilateral(char **map)
 		/* ft_printf("Ancho conseguido en la posición %d: %d\n", i, width); */
 		if (width != first_width)
 			ft_perror("Map must be quadrilateral 🟥");
-		if (i >= 20)
-			ft_perror("El mapa es demasiado grande (height>=40)");
+		if (i >= 30)
+		{
+			ft_printf("Ancho: %d\n");
+			ft_perror("El mapa es demasiado grande (widht >= 20)");
+		}
 	}
 }
 
