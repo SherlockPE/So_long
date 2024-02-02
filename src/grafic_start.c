@@ -6,7 +6,7 @@
 /*   By: flopez-r <flopez-r@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/23 16:58:15 by flopez-r          #+#    #+#             */
-/*   Updated: 2024/02/02 12:07:30 by flopez-r         ###   ########.fr       */
+/*   Updated: 2024/02/02 13:12:27 by flopez-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,8 +46,11 @@ void	create_images(t_data *data)
 		"./textures/walls.xpm", &img_width, &img_height);
 	data->img_data.end = mlx_xpm_file_to_image(data->g_data.mlx, \
 		"./textures/exit.xpm", &img_width, &img_height);
+	data->img_data.enemies = mlx_xpm_file_to_image(data->g_data.mlx, \
+		"./textures/enemies.xpm", &img_width, &img_height);
 	if (!data->img_data.colectibles || !data->img_data.floor
-		|| !data->img_data.player || !data->img_data.walls)
+		|| !data->img_data.player || !data->img_data.walls ||
+		!data->img_data.end)
 		ft_perror("create images function error");
 	//mlx_destroy_image
 }
@@ -112,7 +115,7 @@ void	put_background(t_data *data, char **map)
 				put_img(data, data->img_data.floor, j, i);
 			if (c == 'E')
 				put_img(data, data->img_data.end, j, i);
-			if (c == 'C')
+			else if (c == 'C')
 				put_img(data, data->img_data.colectibles, j, i);
 			j++;
 		}

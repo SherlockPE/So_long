@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   check_map.c                                        :+:      :+:    :+:   */
+/*   map_check.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: flopez-r <flopez-r@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/18 15:42:25 by flopez-r          #+#    #+#             */
-/*   Updated: 2024/01/23 12:25:30 by flopez-r         ###   ########.fr       */
+/*   Updated: 2024/02/02 13:24:23 by flopez-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,7 +102,7 @@ void	check_EPC_ocurrences(char c, int *j, int last)
 	(*j)++;
 }
 
-//Checker 4 (El mapa solo debe tener los caracteres "1, 0, E, P, C")
+//Checker 4 (El mapa solo debe tener los caracteres "1, 0, E, P, C") && "N"
 void	check_cells(char **map)
 {
 	int		i;
@@ -117,7 +117,7 @@ void	check_cells(char **map)
 		{
 			c = map[i][j];
 			c = ft_toupper(c);
-			if (c == '1' || c == '0' || c == '\n')
+			if (c == '1' || c == '0' || c == '\n' || c == 'N')
 				j++;
 			else if (c == 'E' || c == 'P' || c == 'C')
 				check_EPC_ocurrences(c, &j, 0);

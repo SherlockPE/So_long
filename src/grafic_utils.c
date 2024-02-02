@@ -6,7 +6,7 @@
 /*   By: flopez-r <flopez-r@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/23 16:58:18 by flopez-r          #+#    #+#             */
-/*   Updated: 2024/02/02 11:43:51 by flopez-r         ###   ########.fr       */
+/*   Updated: 2024/02/02 14:12:09 by flopez-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,12 @@ void	put_img(t_data *data, void *img, int x, int y)
 
 void	end_program(t_data *data)
 {
+	mlx_destroy_image(data->g_data.mlx, data->img_data.colectibles);
+	mlx_destroy_image(data->g_data.mlx, data->img_data.end);
+	mlx_destroy_image(data->g_data.mlx, data->img_data.enemies);
+	mlx_destroy_image(data->g_data.mlx, data->img_data.floor);
+	mlx_destroy_image(data->g_data.mlx, data->img_data.player);
+	mlx_destroy_image(data->g_data.mlx, data->img_data.walls);
 	mlx_destroy_window(data->g_data.mlx, data->g_data.window);
 	exit(0);
 }
@@ -38,27 +44,68 @@ void	reset_player(t_data *data, char **map)
 	ft_printf("Número de movimientos: %d\n",  data->n_mv);
 }
 
+void	deploy_message(int action)
+{
+	if (action == 1)
+	{
+		ft_printf(CYAN"===============================================================\n"RESET);
+		ft_printf(GREEN" __    __                                              \n");
+		ft_printf("/\\ \\  /\\ \\                              __             \n");
+		ft_printf("\\ `\\`\\/'/ ___   __  __      __  __  __/\\_\\    ___     \n");
+		ft_printf(" `\\ `\\  /' / __`\\/\\ \\/\\ \\    /\\ \\/\\ \\/\\ \\/\\ \\ /' _ `\\   \n");
+		ft_printf("   `\\ \\ \\/\\ \\L\\ \\ \\ \\_\\ \\   \\ \\ \\_/ \\_/ \\ \\ \\/\\ \\/\\ \\  \n");
+		ft_printf("     \\ \\_\\ \\____/\\ \\____/    \\ \\___x___/'\\ \\_\\ \\_\\ \\_\\ \n");
+		ft_printf("      \\/_/\\/___/  \\/___/      \\/__//__/   \\/_/\\/_/\\/_/ \n"RESET);
+		ft_printf(CYAN"===============================================================\n"RESET);
+	}
+	else if (action == 2)
+	{
+		ft_printf(CYAN"===============================================================\n"RESET);
+		ft_printf(RED" __    __                   ___                               \n");
+		ft_printf("/\\ \\  /\\ \\                 /\\_ \\                              \n");
+		ft_printf("\\ `\\`\\/'/ ___   __  __    \\//\\ \\     ___     ____     __     \n");
+		ft_printf(" `\\ `\\ /' / __`\\/\\ \\/\\ \\     \\ \\ \\   / __`\\  /',__\\  /'__`\\   \n");
+		ft_printf("   `\\ \\ \\/\\ \\L\\ \\ \\ \\_\\ \\     \\_\\ \\_/\\ \\L\\ \\/\\__, `\\/\\  __/   \n");
+		ft_printf("     \\ \\_\\ \\____/\\ \\____/     /\\____\\ \\____/\\/\\____/\\ \\____\\  \n");
+		ft_printf("      \\/_/\\/___/  \\/___/      \\/____/\\/___/  \\/___/  \\/____/  \n");
+		ft_printf("                                                              \n"RESET);
+		ft_printf(CYAN"===============================================================\n"RESET);
+	}
+}
+
+void	check_mv_enemy(t_data *data, char c)
+{
+	if (c == 'N')
+	{
+		deploy_message(2);
+		end_program(data);
+	}
+}
+
 int	check_movement(t_data *data, int x, int y)
 {
-	if (data->map[y][x] == '1')
+	char	c;
+	c = ft_toupper(data->map[y][x]);
+	check_mv_enemy(data, c);
+	if (c == '1')
 		return (0);
-	if (data->map[y][x] == 'C')
+	if (c == 'C')
 	{
 		data->n_mv += 1;
 		data->n_col -= 1;
 		data->map[y][x] = '0';
 		return (1);
 	}
-	if (data->map[y][x] == '0' || data->map[y][x] == 'P')
+	if (c == '0' || c == 'P')
 	{
 		data->n_mv += 1;
 		return (1);
 	}
-	if (data->map[y][x] == 'E' && data->n_col == 0)
+	if (c == 'E' && data->n_col == 0)
 	{
 		data->n_mv += 1;
+		deploy_message(1);
 		end_program(data);
-		return (1);
 	}
 	return (0);
 }

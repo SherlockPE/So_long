@@ -6,7 +6,7 @@
 /*   By: flopez-r <flopez-r@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/20 18:37:38 by flopez-r          #+#    #+#             */
-/*   Updated: 2024/02/01 20:00:15 by flopez-r         ###   ########.fr       */
+/*   Updated: 2024/02/02 13:33:33 by flopez-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ int	expand_players(char **map, int i, int j, int *col)
 	char	actual;
 
 	actual = map[i][j];
-	if (actual == '1' || actual == 'E' || actual == 'P')
+	if (actual == '1' || actual == 'E' || actual == 'P' || actual == 'N')
 		return (0);
 	//Down and Left
 	if (map[i + 1][j] == 'P' || map[i][j - 1] == 'P')
