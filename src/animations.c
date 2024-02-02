@@ -1,20 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils.c                                            :+:      :+:    :+:   */
+/*   animations.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: flopez-r <flopez-r@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/18 15:44:22 by flopez-r          #+#    #+#             */
-/*   Updated: 2024/02/02 16:35:49 by flopez-r         ###   ########.fr       */
+/*   Created: 2024/02/02 16:44:14 by flopez-r          #+#    #+#             */
+/*   Updated: 2024/02/02 16:49:27 by flopez-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <so_long.h>
 
-void	ft_perror(char *message)
+int animate(t_data *data)
 {
-	ft_printf(RED"Error ❌\n"RESET);
-	ft_printf(RED"%s\n"RESET, message);
-	exit(EXIT_FAILURE);
+    static int  frames;
+    
+    frames++;
+    if (frames == 3000)
+    {
+        
+    }
+    
 }

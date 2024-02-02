@@ -6,7 +6,7 @@
 /*   By: flopez-r <flopez-r@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/16 15:10:04 by flopez-r          #+#    #+#             */
-/*   Updated: 2024/02/02 15:30:35 by flopez-r         ###   ########.fr       */
+/*   Updated: 2024/02/02 16:48:25 by flopez-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -128,5 +128,8 @@ void				put_img(t_data *data, void *img, int x, int y);
 int					key_events(int keycode, t_data *data);
 void				deploy_message(int action);
 void				end_program(t_data *data);
+
+//Animations
+int					animate(t_data *data);
 
 #endif

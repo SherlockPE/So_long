@@ -6,7 +6,7 @@
 /*   By: flopez-r <flopez-r@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/23 16:58:18 by flopez-r          #+#    #+#             */
-/*   Updated: 2024/02/02 15:57:41 by flopez-r         ###   ########.fr       */
+/*   Updated: 2024/02/02 16:32:25 by flopez-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ void	end_program(t_data *data)
 	if (data->img_data.walls)
 		mlx_destroy_image(data->g_data.mlx, data->img_data.walls);
 	mlx_destroy_window(data->g_data.mlx, data->g_data.window);
+	free_map(data->map);
 	exit(0);
 }
 
@@ -51,9 +52,9 @@ void	reset_player(t_data *data, char **map)
 
 void	deploy_message(int action)
 {
-	ft_printf(CYAN"===============================================================\n"RESET);
 	if (action == 1)
 	{
+		ft_printf(CYAN"===============================================================\n"RESET);
 		ft_printf(GREEN" __    __                                              \n");
 		ft_printf("/\\ \\  /\\ \\                              __             \n");
 		ft_printf("\\ `\\`\\/'/ ___   __  __      __  __  __/\\_\\    ___     \n");
@@ -61,9 +62,11 @@ void	deploy_message(int action)
 		ft_printf("   `\\ \\ \\/\\ \\L\\ \\ \\ \\_\\ \\   \\ \\ \\_/ \\_/ \\ \\ \\/\\ \\/\\ \\  \n");
 		ft_printf("     \\ \\_\\ \\____/\\ \\____/    \\ \\___x___/'\\ \\_\\ \\_\\ \\_\\ \n");
 		ft_printf("      \\/_/\\/___/  \\/___/      \\/__//__/   \\/_/\\/_/\\/_/ \n"RESET);
+		ft_printf(CYAN"===============================================================\n"RESET);
 	}
 	else if (action == 2)
 	{
+		ft_printf(CYAN"===============================================================\n"RESET);
 		ft_printf(RED" __    __                   ___                              \n");
 		ft_printf("/\\ \\  /\\ \\                 /\\_ \\                             \n");
 		ft_printf("\\ `\\`\\/'/  ___   __  __    \\//\\ \\     ___     ____     __    \n");
@@ -81,6 +84,8 @@ void	check_mv_enemy(t_data *data, char c)
 {
 	if (c == 'N')
 	{
+		data->n_mv += 1;
+		ft_printf("Número de movimientos: %d\n",  data->n_mv);
 		deploy_message(2);
 		end_program(data);
 	}
@@ -110,6 +115,7 @@ int	check_movement(t_data *data, int x, int y)
 	if (c == 'E' && data->n_col == 0)
 	{
 		data->n_mv += 1;
+		ft_printf("Número de movimientos: %d\n",  data->n_mv);
 		deploy_message(1);
 		end_program(data);
 	}

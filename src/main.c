@@ -6,7 +6,7 @@
 /*   By: flopez-r <flopez-r@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/16 16:15:36 by flopez-r          #+#    #+#             */
-/*   Updated: 2024/02/01 20:01:01 by flopez-r         ###   ########.fr       */
+/*   Updated: 2024/02/02 18:07:36 by flopez-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,4 +50,7 @@ int	main(int argc, char *argv[])
 	mlx_hook(data.g_data.window, 2, (1L<<0), key_events, &data);
 	mlx_loop(data.g_data.mlx);
 	free_map(data.map);
+
+	//Animations
+	// mlx_loop_hook(data.g_data.mlx, animate, &data);
 }
