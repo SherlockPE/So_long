@@ -6,7 +6,7 @@
 /*   By: flopez-r <flopez-r@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/23 16:58:15 by flopez-r          #+#    #+#             */
-/*   Updated: 2024/02/01 19:28:46 by flopez-r         ###   ########.fr       */
+/*   Updated: 2024/02/02 12:07:30 by flopez-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ void	start_grafics(char **matrix, t_data *data)
 	if (!data->g_data.mlx)
 		ft_perror("start grafics fucntion error");
 	data->g_data.window = mlx_new_window(data->g_data.mlx, ancho * PIXEL_SIZE,
-			alto * PIXEL_SIZE, "So_long");
+			(alto + 1)* PIXEL_SIZE, "So_long");
 	if (!data->g_data.window)
 		ft_perror("Problemas al crear la ventana");
 }
@@ -75,6 +75,23 @@ void	search_player(t_data *data, char **map)
 	}
 }
 
+void	put_information(t_data *data, int y)
+{
+	char	*number;
+	char	*cant_mv;
+	
+	number = ft_itoa(data->n_mv);
+	if (!number)
+		ft_perror("Malloc error in put information 🦉");
+	cant_mv = ft_strjoin("Cantidad de movimientos: ", number);
+
+	mlx_string_put(data->g_data.mlx, data->g_data.window, 0, y * PIXEL_SIZE, 0x0000FF00, cant_mv);
+	free(number);
+	ft_printf("y:%d\n", y);
+	free(cant_mv);
+	// ft_printf("x: %d, y:%d\n", x, y);
+}
+
 void	put_background(t_data *data, char **map)
 {
 	int		i;
@@ -82,14 +99,11 @@ void	put_background(t_data *data, char **map)
 	char	c;
 
 	i = 0;
-	ft_printf("PRIMER WHILE\n");
 	while (map[i])
 	{
 		j = 0;
-		ft_printf("2DO WHILE\n");
 		while (map[i][j] && map[i][j] != '\n')
 		{
-			ft_printf("DENTRO DEL 2DO WHILE \n");
 			c = map[i][j];
 			c = ft_toupper(c);
 			if (c == '1')
@@ -104,6 +118,7 @@ void	put_background(t_data *data, char **map)
 		}
 		i++;
 	}
+	put_information(data, i);
 }
 
 void		deploy_playground(char **map, t_data *data)

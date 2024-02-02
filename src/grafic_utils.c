@@ -6,7 +6,7 @@
 /*   By: flopez-r <flopez-r@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/23 16:58:18 by flopez-r          #+#    #+#             */
-/*   Updated: 2024/02/01 20:06:59 by flopez-r         ###   ########.fr       */
+/*   Updated: 2024/02/02 11:43:51 by flopez-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ void	reset_player(t_data *data, char **map)
 	mlx_clear_window(data->g_data.mlx, data->g_data.window);
 	put_background(data, map);
 	put_player(data);
+	ft_printf("Número de movimientos: %d\n",  data->n_mv);
 }
 
 int	check_movement(t_data *data, int x, int y)
@@ -48,7 +49,7 @@ int	check_movement(t_data *data, int x, int y)
 		data->map[y][x] = '0';
 		return (1);
 	}
-	if (data->map[y][x] == '0')
+	if (data->map[y][x] == '0' || data->map[y][x] == 'P')
 	{
 		data->n_mv += 1;
 		return (1);
@@ -62,10 +63,8 @@ int	check_movement(t_data *data, int x, int y)
 	return (0);
 }
 
-
 int	key_events(int keycode, t_data *data)
 {
-	printf("Keycode %d\n", keycode);
 	if (keycode == UP_L || keycode == UP_D) //Up
 	{
 		if (check_movement(data, data->cords_player.x, data->cords_player.y - 1))
