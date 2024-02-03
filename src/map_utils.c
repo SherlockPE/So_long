@@ -6,7 +6,7 @@
 /*   By: flopez-r <flopez-r@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/19 12:13:19 by flopez-r          #+#    #+#             */
-/*   Updated: 2024/02/02 18:04:17 by flopez-r         ###   ########.fr       */
+/*   Updated: 2024/02/03 14:24:53 by flopez-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,17 +41,13 @@ char	**create_map(char *path)
 	int		i;
 	int		fd;
 
-	//Get alto
 	alto = get_alto(path);
-	//Obtener file descriptor
 	fd = open(path, O_RDONLY);
 	if (fd < 0)
 		ft_perror("No se pudo abrir el archivo");
-	//Darle tamaño al mapa
 	matrix = (char **)ft_calloc(alto + 1, sizeof(char *));
 	if (!matrix)
 		ft_perror("Malloc error\n");
-	//Llenar el mapa
 	i = 0;
 	while (1)
 	{
@@ -64,6 +60,7 @@ char	**create_map(char *path)
 	return (matrix);
 }
 
+//Function Checks if the extention of the archive is .ber
 void	check_extention(char *path)
 {
 	int		i;
@@ -92,6 +89,23 @@ void	check_extention(char *path)
 	extention = NULL;
 }
 
+//Function print the main characters
+void	print_mc(char actual)
+{
+	if (actual == '1')
+		ft_printf(CYAN "%c" RESET, actual);
+	else if (actual == '0')
+		ft_printf("%c", actual);
+	else if (actual == 'P')
+		ft_printf(BLUE "%c" RESET, actual);
+	else if (actual == 'C')
+		ft_printf(YELLOW "%c" RESET, actual);
+	else if (actual == 'E')
+		ft_printf(YELLOW "%c" RESET, actual);
+	else
+		ft_printf(RED"%c"RESET, actual);
+}
+
 //Function prints an array of arrays (the map)
 void	print_map(char **matrix)
 {
@@ -99,7 +113,6 @@ void	print_map(char **matrix)
 	int		j;
 	char	actual;
 
-	ft_printf("-----------------------------------------------\n");
 	i = 0;
 	while (matrix[i])
 	{
@@ -107,24 +120,12 @@ void	print_map(char **matrix)
 		while (matrix[i][j])
 		{
 			actual = ft_toupper(matrix[i][j]);
-			if (actual == '1')
-				ft_printf(BLUE "%c" RESET, actual);
-			else if (actual == '0')
-				ft_printf("%c", actual);
-			else if (actual == 'P')
-				ft_printf(RED "%c" RESET, actual);
-			else if (actual == 'C')
-				ft_printf(YELLOW "%c" RESET, actual);
-			else if (actual == 'E')
-				ft_printf(GREEN "%c" RESET, actual);
-			else
-				ft_printf("%c", actual);
+			print_mc(actual);
 			j++;
 		}
 		i++;
 	}
 	ft_printf("\n");
-	ft_printf("-----------------------------------------------\n");
 }
 
 void	free_map(char **map)

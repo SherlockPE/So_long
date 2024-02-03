@@ -6,7 +6,7 @@
 /*   By: flopez-r <flopez-r@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/16 16:15:36 by flopez-r          #+#    #+#             */
-/*   Updated: 2024/02/03 14:06:56 by flopez-r         ###   ########.fr       */
+/*   Updated: 2024/02/03 14:15:17 by flopez-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,8 +31,6 @@ char	**checkers(char **argv)
 int	main(int argc, char *argv[])
 {
 	t_data	data;
-	// char	**map;
-
 	//MAP											<------FIRST PART DONE
 	if (argc <= 1)
 		ft_perror("Arguments not valid");
@@ -41,13 +39,13 @@ int	main(int argc, char *argv[])
 	data.map = checkers(argv);
 	print_map(data.map);
 
-	//GRAFICS	 								<------SECOND PART IN PROGRESS
+	//GRAFICS
 	deploy_playground(data.map, &data);
 
-	// Animations
+	//ANIMATIONS
 	mlx_loop_hook(data.g_data.mlx, animate, &data);
 
-	//Movements and key events
+	//MOVEMENTS
 	data.n_mv = 0;
 	count_collectibles(data.map, &data.n_col);
 	mlx_hook(data.g_data.window, 2, (1L<<0), key_events, &data);
