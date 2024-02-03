@@ -6,7 +6,7 @@
 /*   By: flopez-r <flopez-r@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/16 16:15:36 by flopez-r          #+#    #+#             */
-/*   Updated: 2024/02/02 18:07:36 by flopez-r         ###   ########.fr       */
+/*   Updated: 2024/02/03 14:06:56 by flopez-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,9 @@ int	main(int argc, char *argv[])
 	//GRAFICS	 								<------SECOND PART IN PROGRESS
 	deploy_playground(data.map, &data);
 
+	// Animations
+	mlx_loop_hook(data.g_data.mlx, animate, &data);
+
 	//Movements and key events
 	data.n_mv = 0;
 	count_collectibles(data.map, &data.n_col);
@@ -51,6 +54,4 @@ int	main(int argc, char *argv[])
 	mlx_loop(data.g_data.mlx);
 	free_map(data.map);
 
-	//Animations
-	// mlx_loop_hook(data.g_data.mlx, animate, &data);
 }

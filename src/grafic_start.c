@@ -6,7 +6,7 @@
 /*   By: flopez-r <flopez-r@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/23 16:58:15 by flopez-r          #+#    #+#             */
-/*   Updated: 2024/02/02 16:06:37 by flopez-r         ###   ########.fr       */
+/*   Updated: 2024/02/03 14:05:48 by flopez-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,19 @@ void	start_grafics(char **matrix, t_data *data)
 		ft_perror("Problemas al crear la ventana");
 }
 
+void	error_create_img(t_data *data)
+{
+	if (!data->img_data.colectibles || !data->img_data.floor
+		|| !data->img_data.player || !data->img_data.walls ||
+		!data->img_data.end || !data->img_data.player2 ||
+		!data->img_data.enemies ||!data->img_data.enemies2)
+	{
+		ft_printf(RED"Error ❌\n"RESET);
+		ft_printf(RED"create images function error"RESET);
+		end_program(data);
+	}
+}
+
 void	create_images(t_data *data)
 {
 	int	img_width;
@@ -40,22 +53,29 @@ void	create_images(t_data *data)
 		"./textures/colects.xpm", &img_width, &img_height);
 	data->img_data.floor = mlx_xpm_file_to_image(data->g_data.mlx, \
 		"./textures/floor.xpm", &img_width, &img_height);
+
+
+		
 	data->img_data.player = mlx_xpm_file_to_image(data->g_data.mlx, \
-		"./textures/player.xpm", &img_width, &img_height);
+		"./textures/player_r1.xpm", &img_width, &img_height);
+	data->img_data.player2 = mlx_xpm_file_to_image(data->g_data.mlx, \
+		"./textures/player_r2.xpm", &img_width, &img_height);
+	// data->img_data.player_l = mlx_xpm_file_to_image(data->g_data.mlx, \
+	// 	"./textures/player.xpm", &img_width, &img_height);
+	// data->img_data.player2_l = mlx_xpm_file_to_image(data->g_data.mlx, \
+	// 	"./textures/player.xpm", &img_width, &img_height);
+
+
+
 	data->img_data.walls = mlx_xpm_file_to_image(data->g_data.mlx, \
 		"./textures/walls.xpm", &img_width, &img_height);
 	data->img_data.end = mlx_xpm_file_to_image(data->g_data.mlx, \
 		"./textures/exit.xpm", &img_width, &img_height);
+
 	data->img_data.enemies = mlx_xpm_file_to_image(data->g_data.mlx, \
 		"./textures/enemies.xpm", &img_width, &img_height);
-	if (!data->img_data.colectibles || !data->img_data.floor
-		|| !data->img_data.player || !data->img_data.walls ||
-		!data->img_data.end)
-	{
-		ft_printf(RED"Error ❌\n");
-		ft_printf(RED"create images function error"RESET);
-		end_program(data);
-	}
+	data->img_data.enemies2 = mlx_xpm_file_to_image(data->g_data.mlx, \
+		"./textures/enemies2.xpm", &img_width, &img_height);
 	//mlx_destroy_image
 }
 
@@ -135,5 +155,5 @@ void		deploy_playground(char **map, t_data *data)
 	create_images(data);
 	put_background(data, map);
 	search_player(data, map);
-	put_img(data, data->img_data.player, data->cords_player.x, data->cords_player.y);
+	put_player(data);
 }

@@ -6,7 +6,7 @@
 /*   By: flopez-r <flopez-r@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/23 16:58:18 by flopez-r          #+#    #+#             */
-/*   Updated: 2024/02/02 16:32:25 by flopez-r         ###   ########.fr       */
+/*   Updated: 2024/02/03 14:06:24 by flopez-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,10 +26,14 @@ void	end_program(t_data *data)
 		mlx_destroy_image(data->g_data.mlx, data->img_data.end);
 	if (data->img_data.enemies)
 		mlx_destroy_image(data->g_data.mlx, data->img_data.enemies);
+	if (data->img_data.enemies)
+		mlx_destroy_image(data->g_data.mlx, data->img_data.enemies2);
 	if (data->img_data.floor)
 		mlx_destroy_image(data->g_data.mlx, data->img_data.floor);
 	if (data->img_data.player)
 		mlx_destroy_image(data->g_data.mlx, data->img_data.player);
+	if (data->img_data.player2)
+		mlx_destroy_image(data->g_data.mlx, data->img_data.player2);
 	if (data->img_data.walls)
 		mlx_destroy_image(data->g_data.mlx, data->img_data.walls);
 	mlx_destroy_window(data->g_data.mlx, data->g_data.window);

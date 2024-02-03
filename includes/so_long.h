@@ -6,7 +6,7 @@
 /*   By: flopez-r <flopez-r@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/16 15:10:04 by flopez-r          #+#    #+#             */
-/*   Updated: 2024/02/02 16:48:25 by flopez-r         ###   ########.fr       */
+/*   Updated: 2024/02/03 14:06:48 by flopez-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,11 @@ typedef struct s_grafic_init
 typedef struct s_img_game
 {
 	void			*player;
+	void			*player2;
+	void			*player_l;
+	void			*player2_l;
 	void			*enemies;
+	void			*enemies2;
 	void			*end;
 	void			*colectibles;
 	void			*walls;
@@ -128,8 +132,9 @@ void				put_img(t_data *data, void *img, int x, int y);
 int					key_events(int keycode, t_data *data);
 void				deploy_message(int action);
 void				end_program(t_data *data);
+void				search_player(t_data *data, char **map);
+void				put_player(t_data *data);
 
 //Animations
 int					animate(t_data *data);
-
 #endif
