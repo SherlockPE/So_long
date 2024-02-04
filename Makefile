@@ -6,13 +6,13 @@
 #    By: flopez-r <flopez-r@student.42madrid.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/01/16 15:12:06 by flopez-r          #+#    #+#              #
-#    Updated: 2024/02/04 12:20:23 by flopez-r         ###   ########.fr        #
+#    Updated: 2024/02/04 13:43:14 by flopez-r         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME := so_long
 
-SRC :=	src/main.c \
+SRC :=	src/so_long.c \
 		src/utils.c \
 		src/map_check.c \
 		src/map_utils.c \

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   so_long.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: flopez-r <flopez-r@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/16 16:15:36 by flopez-r          #+#    #+#             */
-/*   Updated: 2024/02/04 12:35:43 by flopez-r         ###   ########.fr       */
+/*   Updated: 2024/02/04 14:13:25 by flopez-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,12 @@ void	deploy_playground(char **map, t_data *data)
 	put_background(data, map);
 	search_player(data, map);
 	put_player(data);
+}
+
+int	close(int keycode)
+{
+	ft_printf("code: %d\n", keycode);
+	return (0);
 }
 
 int	main(int argc, char *argv[])
