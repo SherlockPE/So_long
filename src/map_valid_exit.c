@@ -6,13 +6,13 @@
 /*   By: flopez-r <flopez-r@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/20 18:37:38 by flopez-r          #+#    #+#             */
-/*   Updated: 2024/02/02 13:33:33 by flopez-r         ###   ########.fr       */
+/*   Updated: 2024/02/04 11:51:55 by flopez-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <so_long.h>
 
-// Function count how many collectionables are in the map
+//Function count how many collectionables are in the map
 void	count_collectibles(char **map, int *col)
 {
 	int	i;
@@ -41,16 +41,12 @@ int	expand_players(char **map, int i, int j, int *col)
 	actual = map[i][j];
 	if (actual == '1' || actual == 'E' || actual == 'P' || actual == 'N')
 		return (0);
-	//Down and Left
 	if (map[i + 1][j] == 'P' || map[i][j - 1] == 'P')
 		map[i][j] = 'P';
-	//Right and Up
 	else if (map[i][j + 1] == 'P' || map[i - 1][j] == 'P')
 		map[i][j] = 'P';
-	//If Expands
 	if (map[i][j] == 'P')
 	{
-		//If collectiona
 		if (actual == 'C')
 			(*col)--;
 		return (1);
@@ -58,6 +54,7 @@ int	expand_players(char **map, int i, int j, int *col)
 	return (0);
 }
 
+// Function checks if theres a 'P' around the exit
 int	check_exit_corners(char **map, int *end)
 {
 	int	i;
@@ -71,12 +68,8 @@ int	check_exit_corners(char **map, int *end)
 		{
 			if (map[i][j] == 'E')
 			{
-				if (map[i + 1][j] == 'P' || map[i][j - 1] == 'P')
-				{
-					(*end)--;
-					return (0);
-				}
-				else if (map[i][j + 1] == 'P' || map[i - 1][j] == 'P')
+				if (map[i + 1][j] == 'P' || map[i][j - 1] == 'P' ||
+					map[i][j + 1] == 'P' || map[i - 1][j] == 'P')
 				{
 					(*end)--;
 					return (0);
@@ -111,12 +104,10 @@ void	look_for_players(char **map, int *col, int *end)
 					cycle = 1;
 				j++;
 			}
-			// print_map(map);
 			i++;
 		}
 	}
 }
-
 
 //	Checker 4 (El mapa debe ser jugable)
 void	check_valid_exit(char *path)
@@ -125,25 +116,11 @@ void	check_valid_exit(char *path)
 	int		end;
 	char	**map;
 
-	//Get a new map 
 	map = create_map(path);
-
 	end = 1;
-	//Count how many collectionables are in the map
 	count_collectibles(map, &col);
-	ft_printf("Cantidad de collectibles: %d\n", col);
-
-	//Expand player if they are in a "0, C, E"
 	look_for_players(map, &col, &end);
-	
-	//Free the copy of the map 
-	// print_map(map);
 	free_map(map);
-	
-	//Check if the path is valid
 	if (col != 0 || end != 0)
 		ft_perror("El mapa no es jugable ⛹️‍♂️");
-
-	//Print cant od collectibles
-	// ft_printf("Cantidad de col after water: %d\n", col);
 }

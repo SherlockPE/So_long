@@ -6,7 +6,7 @@
 /*   By: flopez-r <flopez-r@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/18 15:42:25 by flopez-r          #+#    #+#             */
-/*   Updated: 2024/02/03 15:29:54 by flopez-r         ###   ########.fr       */
+/*   Updated: 2024/02/04 11:54:35 by flopez-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,8 +46,6 @@ static void	check_is_inside_walls(char **map)
 	int	i;
 	int	width;
 
-	//Achar o primeiro comprimento (1)
-	//E comprovar a primeira fila
 	i = 0;
 	width = 0;
 	while (map[i][width] != '\n')
@@ -56,14 +54,12 @@ static void	check_is_inside_walls(char **map)
 			ft_perror("Map must be inside walls 🏰");
 		width++;
 	}
-	//Verificar as beiras (2)
 	while (map[i])
 	{
 		if (map[i][0] != '1' || map[i][width - 1] != '1')
 			ft_perror("Map must be inside walls 🏰");
 		i++;
 	}
-	//Verificar na ultima linea
 	i -= 1;
 	width = 0;
 	while (map[i][width])
@@ -74,9 +70,9 @@ static void	check_is_inside_walls(char **map)
 	}
 }
 
-//Checker 3 (El mapa debe tener:
-//	1) No más de 1 End
-//	2) Solo 1 Player)
+//Checker 3 (Map must be:
+//	1) Only 1 end
+//	2) Only 1 player)
 void	check_EPC_ocurrences(char c, int *j, int last)
 {
 	static int	p;
@@ -141,7 +137,7 @@ void	check_map(char **matrix)
 		free_map(matrix);
 		ft_perror("Mapa no valido 🍙");
 	}
-	check_quadrilateral(matrix);   //1 Done
-	check_is_inside_walls(matrix); //2 Done
-	check_cells(matrix);           //3 Done
+	check_quadrilateral(matrix);
+	check_is_inside_walls(matrix);
+	check_cells(matrix);
 }

@@ -6,7 +6,7 @@
 /*   By: flopez-r <flopez-r@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/19 12:13:19 by flopez-r          #+#    #+#             */
-/*   Updated: 2024/02/03 14:24:53 by flopez-r         ###   ########.fr       */
+/*   Updated: 2024/02/04 12:22:56 by flopez-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,28 +104,6 @@ void	print_mc(char actual)
 		ft_printf(YELLOW "%c" RESET, actual);
 	else
 		ft_printf(RED"%c"RESET, actual);
-}
-
-//Function prints an array of arrays (the map)
-void	print_map(char **matrix)
-{
-	int		i;
-	int		j;
-	char	actual;
-
-	i = 0;
-	while (matrix[i])
-	{
-		j = 0;
-		while (matrix[i][j])
-		{
-			actual = ft_toupper(matrix[i][j]);
-			print_mc(actual);
-			j++;
-		}
-		i++;
-	}
-	ft_printf("\n");
 }
 
 void	free_map(char **map)
