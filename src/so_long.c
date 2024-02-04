@@ -6,7 +6,7 @@
 /*   By: flopez-r <flopez-r@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/16 16:15:36 by flopez-r          #+#    #+#             */
-/*   Updated: 2024/02/04 14:13:25 by flopez-r         ###   ########.fr       */
+/*   Updated: 2024/02/04 14:35:24 by flopez-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,9 +38,9 @@ void	deploy_playground(char **map, t_data *data)
 	put_player(data);
 }
 
-int	close(int keycode)
+int	close_win(t_data *data)
 {
-	ft_printf("code: %d\n", keycode);
+	end_program(data, EXIT_SUCCESS);
 	return (0);
 }
 
@@ -57,6 +57,7 @@ int	main(int argc, char *argv[])
 	mlx_loop_hook(data.g_data.mlx, animate, &data);
 	data.n_mv = 0;
 	count_collectibles(data.map, &data.n_col);
+	mlx_hook(data.g_data.window, 17, 0, close_win, &data);
 	mlx_hook(data.g_data.window, 2, (1L << 0), key_events, &data);
 	mlx_loop(data.g_data.mlx);
 	free_map(data.map);
