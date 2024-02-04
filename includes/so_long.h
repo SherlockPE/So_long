@@ -6,7 +6,7 @@
 /*   By: flopez-r <flopez-r@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/16 15:10:04 by flopez-r          #+#    #+#             */
-/*   Updated: 2024/02/03 14:06:48 by flopez-r         ###   ########.fr       */
+/*   Updated: 2024/02/04 13:07:35 by flopez-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,8 +71,6 @@ typedef struct s_img_game
 {
 	void			*player;
 	void			*player2;
-	void			*player_l;
-	void			*player2_l;
 	void			*enemies;
 	void			*enemies2;
 	void			*end;
@@ -91,7 +89,7 @@ typedef struct s_data
 {
 	t_grafic_init	g_data;
 	t_img_game		img_data;
-	t_cords			cords_player;
+	t_cords			cords_p;
 	char			**map;
 
 	int				n_mv;
@@ -118,22 +116,32 @@ void				ft_perror(char *message);
 char				**create_map(char *path);
 void				free_map(char **map);
 void				print_map(char **matrix);
+void				print_mc(char actual);
 char				**copy_map(char **map);
+void				deploy_message(int action, t_data *data);
+void				end_program(t_data *data, int exit_code);
 
 //Checkers
 void				check_map(char **matrix);
 void				check_extention(char *path);
 void				check_valid_exit(char *path);
 
-//Grafics
-void				deploy_playground(char **map, t_data *data);
-void				put_background(t_data *data, char **map);
-void				put_img(t_data *data, void *img, int x, int y);
-int					key_events(int keycode, t_data *data);
-void				deploy_message(int action);
-void				end_program(t_data *data);
+//Start Grafics
+void				start_grafics(char **matrix, t_data *data);
+void				create_images(t_data *data);
 void				search_player(t_data *data, char **map);
+void				put_information(t_data *data, int y);
+void				put_background(t_data *data, char **map);
+
+//Grafic utils
+void				put_img(t_data *data, void *img, int x, int y);
 void				put_player(t_data *data);
+void				reset_player(t_data *data, char **map);
+void				error_create_img(t_data *data);
+void				put_mc_to_win(t_data *data, char c, int x, int y);
+
+//Events
+int					key_events(int keycode, t_data *data);
 
 //Animations
 int					animate(t_data *data);
