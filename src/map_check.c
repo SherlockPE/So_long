@@ -6,7 +6,7 @@
 /*   By: flopez-r <flopez-r@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/18 15:42:25 by flopez-r          #+#    #+#             */
-/*   Updated: 2024/02/04 11:54:35 by flopez-r         ###   ########.fr       */
+/*   Updated: 2024/02/04 13:23:03 by flopez-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,7 @@ static void	check_is_inside_walls(char **map)
 //Checker 3 (Map must be:
 //	1) Only 1 end
 //	2) Only 1 player)
-void	check_EPC_ocurrences(char c, int *j, int last)
+void	check_epc_ocurrences(char c, int *j, int last)
 {
 	static int	p;
 	static int	e;
@@ -119,13 +119,13 @@ void	check_cells(char **map)
 			if (c == '1' || c == '0' || c == '\n' || c == 'N')
 				j++;
 			else if (c == 'E' || c == 'P' || c == 'C')
-				check_EPC_ocurrences(c, &j, 0);
+				check_epc_ocurrences(c, &j, 0);
 			else
 				ft_perror("Caracteres el mapa no soportados 🚷");
 		}
 		i++;
 	}
-	check_EPC_ocurrences('A', &j, 1);
+	check_epc_ocurrences('A', &j, 1);
 }
 
 //A funçao verifica se um mapa é valido
