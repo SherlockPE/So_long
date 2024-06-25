@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_utils.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: flopez-r <flopez-r@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: fabriciolopez <fabriciolopez@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/19 12:13:19 by flopez-r          #+#    #+#             */
-/*   Updated: 2024/02/04 12:22:56 by flopez-r         ###   ########.fr       */
+/*   Updated: 2024/06/25 21:12:51 by fabriciolop      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,8 @@ char	**create_map(char *path)
 	int		fd;
 
 	alto = get_alto(path);
+	if (alto < 3)
+		ft_perror("El mapa debe tener como minimo paredes de alto 🏰\n");
 	fd = open(path, O_RDONLY);
 	if (fd < 0)
 		ft_perror("No se pudo abrir el archivo");
